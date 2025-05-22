@@ -4,10 +4,13 @@ import API from "../api/api";
 
 const AdminDashboard = () => {
   const [fleet, setFleet] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [bookings, setBookings] = useState([]);
   const [searchModel, setSearchModel] = useState("");
   const [searchSeats, setSearchSeats] = useState("");
   const [error, setError] = useState("");
 
+  // Fetch cars
   useEffect(() => {
     const fetchFleet = async () => {
       try {
@@ -18,9 +21,48 @@ const AdminDashboard = () => {
         setError("Failed to load fleet data.");
       }
     };
-
     fetchFleet();
   }, []);
+
+  // Fetch users
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const res = await API.get("/users");
+        setUsers(res.data);
+      } catch (err) {
+        console.error("Failed to fetch users", err);
+      }
+    };
+    fetchUsers();
+  }, []);
+
+  // Fetch bookings
+  useEffect(() => {
+    const fetchBookings = async () => {
+      try {
+        const res = await API.get("/bookings");
+        setBookings(res.data);
+      } catch (err) {
+        console.error("Failed to fetch bookings", err);
+      }
+    };
+    fetchBookings();
+  }, []);
+
+  // Cancel booking
+  const handleCancel = async (id) => {
+    if (!window.confirm("Are you sure you want to cancel this booking?"))
+      return;
+
+    try {
+      await API.delete(`/bookings/${id}`);
+      setBookings(bookings.filter((b) => b._id !== id));
+    } catch (err) {
+      console.error("Failed to cancel booking", err);
+      alert("Failed to cancel booking");
+    }
+  };
 
   const filteredFleet = fleet.filter((car) => {
     const matchesModel = car.model
@@ -58,7 +100,7 @@ const AdminDashboard = () => {
         </p>
       </motion.div>
 
-      {/* Fleet Table */}
+      {/* Manage Fleet */}
       <motion.div
         className="bg-gray-100 p-6 rounded-2xl shadow mb-10"
         whileHover={{ scale: 1.01 }}
@@ -96,11 +138,11 @@ const AdminDashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredFleet.map((car, i) => (
-                  <tr key={car._id || i} className="hover:bg-gray-100">
+                {filteredFleet.map((car) => (
+                  <tr key={car._id} className="hover:bg-gray-100">
                     <td className="p-3 border">{car.model}</td>
                     <td className="p-3 border">{car.seats || "-"}</td>
-                    <td className="p-3 border">{car.range} km</td>
+                    <td className="p-3 border">{car.range}</td>
                     <td className="p-3 border">{car.acceleration || "-"}</td>
                     <td className="p-3 border font-semibold">
                       €{car.pricePerDay}
@@ -113,27 +155,84 @@ const AdminDashboard = () => {
         )}
       </motion.div>
 
-      {/* Placeholder panels */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <motion.div
-          className="bg-gray-100 p-6 rounded-2xl shadow"
-          whileHover={{ scale: 1.01 }}
-        >
-          <h2 className="text-xl font-semibold mb-2">👥 Manage Users</h2>
-          <p className="text-gray-500 text-sm">
-            User list, ban/unban, etc. coming soon.
-          </p>
-        </motion.div>
-        <motion.div
-          className="bg-gray-100 p-6 rounded-2xl shadow"
-          whileHover={{ scale: 1.01 }}
-        >
-          <h2 className="text-xl font-semibold mb-2">📅 Manage Reservations</h2>
-          <p className="text-gray-500 text-sm">
-            Reservation list, status, calendar view, etc. coming soon.
-          </p>
-        </motion.div>
-      </div>
+      {/* Manage Users */}
+      <motion.div
+        className="bg-gray-100 p-6 rounded-2xl shadow mb-10"
+        whileHover={{ scale: 1.01 }}
+      >
+        <h2 className="text-xl font-semibold mb-4">👥 Manage Users</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border border-gray-300 text-sm">
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="p-3 border">Name</th>
+                <th className="p-3 border">Email</th>
+                <th className="p-3 border">Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr key={user._id} className="hover:bg-gray-100">
+                  <td className="p-3 border">{user.name}</td>
+                  <td className="p-3 border">{user.email}</td>
+                  <td className="p-3 border">
+                    {user.isAdmin ? "Admin" : "User"}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </motion.div>
+
+      {/* Manage Reservations */}
+      <motion.div
+        className="bg-gray-100 p-6 rounded-2xl shadow"
+        whileHover={{ scale: 1.01 }}
+      >
+        <h2 className="text-xl font-semibold mb-4">📅 Manage Reservations</h2>
+        {bookings.length === 0 ? (
+          <p className="text-gray-500 text-sm">No bookings found.</p>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border border-gray-300 text-sm">
+              <thead>
+                <tr className="bg-gray-200">
+                  <th className="p-3 border">Car</th>
+                  <th className="p-3 border">User</th>
+                  <th className="p-3 border">Pickup</th>
+                  <th className="p-3 border">Return</th>
+                  <th className="p-3 border">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bookings.map((booking) => (
+                  <tr key={booking._id} className="hover:bg-gray-100">
+                    <td className="p-3 border">{booking.car?.model}</td>
+                    <td className="p-3 border">
+                      {booking.user?.name} ({booking.user?.email})
+                    </td>
+                    <td className="p-3 border">
+                      {new Date(booking.startDate).toLocaleString()}
+                    </td>
+                    <td className="p-3 border">
+                      {new Date(booking.endDate).toLocaleString()}
+                    </td>
+                    <td className="p-3 border">
+                      <button
+                        onClick={() => handleCancel(booking._id)}
+                        className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition text-sm"
+                      >
+                        Cancel
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </motion.div>
     </motion.div>
   );
 };
