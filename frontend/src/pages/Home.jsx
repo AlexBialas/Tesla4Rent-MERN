@@ -53,25 +53,25 @@ const testimonials = [
 
 const fleetData = [
   {
-    model: "Model S Plaid",
+    model: "Model S",
     image: "/images/model-s.jpg",
     specs: ["637 km range", "2.1s 0-100 km/h", "5 seats", "1,020 hp"],
     price: "499 €/day",
   },
   {
-    model: "Model 3 Performance",
+    model: "Model 3",
     image: "/images/model-3.jpg",
     specs: ["547 km range", "3.3s 0-100 km/h", "5 seats", "450 hp"],
     price: "349 €/day",
   },
   {
-    model: "Model X Plaid",
+    model: "Model X",
     image: "/images/model-x.jpg",
     specs: ["536 km range", "2.6s 0-100 km/h", "6 seats", "1,020 hp"],
     price: "549 €/day",
   },
   {
-    model: "Model Y Long Range",
+    model: "Model Y",
     image: "/images/model-y.jpg",
     specs: ["533 km range", "4.8s 0-100 km/h", "5 seats", "384 hp"],
     price: "379 €/day",
@@ -86,17 +86,27 @@ const fleetData = [
     model: "Roadster",
     image: "/images/roadster.jpg",
     specs: ["1,000 km range", "1.9s 0-100 km/h", "4 seats", "1,500 hp"],
-    price: "999 €/day",
+    price: "499 €/day",
   },
   {
-    model: "Model S",
-    image: "/images/model-s.jpg",
+    model: "Model S Plaid",
+    image: "/images/model-s-plaid.jpg",
     specs: ["652 km range", "3.2s 0-100 km/h", "5 seats", "670 hp"],
     price: "399 €/day",
   },
   {
-    model: "Model 3",
-    image: "/images/model-3.jpg",
+    model: "Model 3 Performance",
+    image: "/images/model-3-performance.jpg",
+    specs: ["491 km range", "5.6s 0-100 km/h", "5 seats", "283 hp"],
+    price: "299 €/day",
+  },  {
+    model: "Model x Plaid",
+    image: "/images/model-x-plaid.jpg",
+    specs: ["491 km range", "5.6s 0-100 km/h", "5 seats", "283 hp"],
+    price: "399 €/day",
+  },  {
+    model: "Model Y Long Range",
+    image: "/images/model-y-long-range.jpg",
     specs: ["491 km range", "5.6s 0-100 km/h", "5 seats", "283 hp"],
     price: "299 €/day",
   },
