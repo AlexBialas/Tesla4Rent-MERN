@@ -1,50 +1,52 @@
+# Tesla4Rent 🚗💨  
+**A Sustainable Tesla Rental Platform | Built with MERN Stack**
 
-# 🚗 Tes4Rent – MERN App
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)  
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?logo=mongodb&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-%23404d59.svg?logo=express&logoColor=white)
+![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-%2343853D.svg?logo=node.js&logoColor=white)
 
-**Tesla4Rent** is a modern Tesla car rental platform built using the **MERN stack** (MongoDB, Express, React, Node.js).
+## 📖 Projektübersicht  
+Tesla4Rent ist eine innovative Plattform zum Mieten von Tesla-Fahrzeugen mit Fokus auf **Nachhaltigkeit** und **Benutzerfreundlichkeit**. Nutzer können:  
+- 🔍 Elektroautos in ihrer Nähe finden  
+- 📅 Buchungen in Echtzeit vornehmen  
+- 💳 Sichere Zahlungen mit Stripe durchführen  
+- 🌱 Ihre CO2-Ersparnis im Vergleich zu Verbrennern tracken  
 
-## ✨ Features
-
-- Browse available Tesla models
-- Tesla-styled homepage with sections: Hero, Benefits, Testimonials, Contact
-- Smooth scroll-triggered animations and responsive UI
-- Ready layout for:
-  - 🔐 User login & registration with JWT (coming soon)
-  - 📅 Booking calendar (coming soon)
-  - 🧾 User & admin dashboard (coming soon)
-  - 💳 Stripe & PayPal payments (coming soon)
-
-## 🛠 Tech Stack
-
-- **Frontend**: React, Vite, Tailwind CSS, Framer Motion
-- **Backend**: Express, MongoDB (to be added)
-- **Auth**: JWT (to be added)
-- **Payments**: Stripe, PayPal (to be added)
-
-## 🚀 Getting Started
-
-### Install dependencies
-
-```bash
-cd frontend
-npm install
-```
-
-### Run development server
-
-```bash
-npm run dev
-```
-
-Then open [http://localhost:5173](http://localhost:5173) in your browser.
+Ziel ist es, grüne Mobilität durch Carsharing für alle zugänglich zu machen.
 
 ---
 
-## 👥 Authors
+## ✨ Features  
+### Frontend  
+- Responsive UI mit **React.js** und **React-Bootstrap**  
+- Nutzerauthentifizierung (Login/Registrierung) mit **JWT**  
+- Interaktiver Buchungskalender  
+- Profilmanagement mit Buchungshistorie  
 
-- Lead Developer: Alex Bialas
-- Contributors: Alex, Chris
+### Backend  
+- REST-API mit **Node.js** & **Express.js**  
+- Datenbankmanagement mit **MongoDB** (Mongoose)  
+- Zahlungsabwicklung via **Stripe API**  
+- Bild-Upload für Fahrzeuge mit **Cloudinary**  
+- Sicherheit durch verschlüsselte Tokens (**JWT**)  
 
-## 📄 License
+---
 
-This project is for educational and portfolio purposes.
+## 🛠️ Technologien  
+| Frontend              | Backend               | Tools & APIs          |  
+|-----------------------|-----------------------|-----------------------|  
+| React.js              | Node.js               | MongoDB Atlas         |  
+| React-Bootstrap       | Express.js            | Stripe API            |  
+| Axios                 | Mongoose (ODM)        | Cloudinary            |  
+| React Router          | JWT (Authentifizierung)| Nodemon (Dev)        |  
+| CSS-Module            | Bcrypt (Passwort-Hashing)| Postman (Testing)  |  
+
+---
+
+## 🚀 Installation  
+1. **Repository klonen**  
+   ```bash  
+   git clone https://github.com/AlexBialas/Tesla4Rent-MERN.git  
+   cd Tesla4Rent-MERN  
