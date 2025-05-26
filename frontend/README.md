@@ -1,5 +1,5 @@
 
-# 🚗 Tesla4Rent – MERN App
+# 🚗 Tes4Rent – MERN App
 
 **Tesla4Rent** is a modern Tesla car rental platform built using the **MERN stack** (MongoDB, Express, React, Node.js).
 
